@@ -21,44 +21,58 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == "rock" && computerSelection == "rock" ||
         playerSelection == "paper" && computerSelection == "paper" ||
         playerSelection == "scissors" && computerSelection == "scissors"){
-        
-        console.log("empate")
-    
+        console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => empate") 
+
     }
     else if (playerSelection == "paper" && computerSelection == "rock" ||
              playerSelection == "rock" && computerSelection == "scissors" ||
              playerSelection == "scissors" && computerSelection == "paper"){
-   
-        console.log("punto jugador")
-    
-    
+             console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => punto player")
+             return "player" 
     }
     else if (playerSelection == "paper" && computerSelection == "scissors" ||
              playerSelection == "rock" && computerSelection == "paper" ||
              playerSelection == "scissors" && computerSelection == "rock"){
-   
-            console.log("punto compudora")
-        
+             console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => punto compudora") 
+             return "computer"
     }
     else{
         console.log("escribir bien => rock, paper or scissors")
-    }
-
-    return "computadora: "+ computerSelection + " | "+"player: " + playerSelection;
+    }   
 };
 
 
 function game (){
-let player = 0;
-let computer = 0;
+    let player = 0;
+    let computer = 0;
 
-for (let index = 0; index < 5; index++) {
-    let computerSelection = getComputerChoice ();
-    
-    let playerSelection = prompt("rock, paper or scissors");
-    console.log(playRound(playerSelection, computerSelection))
-  
-}
+    for (let index = 0; index < 5; index++)  {
+
+        let computerSelection = getComputerChoice ();
+        
+        let playerSelection = prompt("rock, paper or scissors");
+
+        let resultado =playRound(playerSelection, computerSelection)
+
+        if ( resultado == "player"){
+            player++
+        }
+        else if (resultado == "computer"){
+            computer++
+        }
+        console.log("player:"+ player +" | " + "computer: " + computer )
+    }
+
+    if (player > computer){
+        console.log("player gano!!")
+    }
+    else if (player < computer){
+        console.log("computer gano!!")
+    }
+    else{
+        console.log("empate")
+    }
+
 
 }
 
