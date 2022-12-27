@@ -8,18 +8,41 @@
     <title>Document</title>
 </head>
 <body>
-
-
-    <div class="buttons" >
-        <button id="rock">rock</button>
-        <button id="paper">paper</button>    
-        <button id="scissors">scissors</button>
+    <header>
+        <h1 style="color: antiquewhite; text-align: center;">Piedra papel o tijera</h1>
+        <h3 style="color: blanchedalmond; text-align: center;">El primero en llagar a 5 puntos gana</h3>
+        <p>Seleccionar una mano de abajo</p>
+        <p>↓ ↓ ↓ ↓ ↓ ↓</p>
+    </header>
+    <div id="body">
+        <div class="manos">
+            <div>
+                <p>Player</p>
+                <p id="puntoPlayer">0</p>
+            </div>
+            <img src="./img/game.png" alt="rock paper scissor" id="imgPlayer"  usemap="#mapa">   
+        </div>
+        <map name="mapa">
+            <area shape="rect" coords="14,22,190,120" id="rock" >
+            <area shape="rect" coords="221,9,446,113" id="paper" >
+            <area shape="rect" coords="167,124,278,327" id="scissors" >
+        </map>
+        <p id="msj"></p>
+        <div class="manos">
+            <div>
+                <p>Cpu</p>
+                <p id="puntoCpu">0</p>
+            </div>
+            <img src="./img/game_transparente.png" alt="rock paper scissor" id="imgCPU" >   
+        </div>
     </div>
-
-
-
-
-
+    
+    <div class="modal" id="endgameModal">
+        <p class="modal-title" id="endgameMsg"></p>
+        <button class="btn btn-restart" id="restartBtn">Reintentar</button>
+        <div class="overlay" id="overlay"></div>
+    </div>
+   
     <Script src="./main.js"></Script>
 </body>
 </html>

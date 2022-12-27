@@ -1,20 +1,84 @@
 
 html, body{
-    height: 100%;
+    background-color: #1F1E44;
     margin: 0;
     padding: 0;
+   
     }
 
 
-div{
+#body{
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    width: 100%;
+}
+
+p{  
+    font-size: xx-large;
+    color: aliceblue;
+}
+
+
+
+header > p {
+    text-align: center;
+}
+.manos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    margin: 30px 0;
+    background-color: black;
 }
-button{
-    width: 100px;
-    height: 100px;
-    margin: 20px;
-    
+
+#msj{
+    color:white;
+    text-align: center;
+    background-color: red;
+    height: 10%;
+    font-size: xx-large;
 }
+
+img{
+    scale: 80%;
+    margin: 0;
+}
+#header{
+    height: 10%;
+    background-color: dimgrey;
+}
+
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: var(--primary-dark);
+    text-align: center;
+    font-size: 30px;
+    user-select: none;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(2);
+  }
+
+
+ @media screen and (max-width: 550px) {
+    html{
+        scale: 50%;
+    }
+    div.manos{
+        width: 200%;
+    }  
+ }

@@ -1,11 +1,89 @@
-
-
+const msj = document.getElementById("msj");
 const btnRock = document.getElementById("rock");
-btnRock.addEventListener("click", ()=> prompt("")) 
+const btnPaper = document.getElementById("paper");
+const btnScissors = document.getElementById("scissors");
+let player = 0
+let cpu = 0
 
+btnRock.addEventListener("click", ()=> {    
+        clickRock()
+    }) 
 
+btnPaper.addEventListener("click",()=>{
+        clickPaper()
+    })
 
+btnScissors.addEventListener("click", event=>{
+        clickScissors()
+    })
 
+const resetImagen = ()=>{
+    setTimeout(()=>{
+    document.getElementById("imgCPU").src=`./img/game_transparente.png`
+    document.getElementById("imgPlayer").src=`./img/game.png`
+    },1500) }
+
+function clickRock(){
+    const playerSelection = "rock";
+    let computerSelection = getComputerChoice ();
+    document.getElementById("imgPlayer").src=`./img/${playerSelection}.png`
+    document.getElementById("imgCPU").src=`./img/${computerSelection}.png`
+    playRound(playerSelection, computerSelection);
+    resetImagen()
+    winnerChecker()
+}
+
+function clickPaper(){
+    const playerSelection = "paper";
+    let computerSelection = getComputerChoice ();
+    document.getElementById("imgPlayer").src=`./img/${playerSelection}.png`
+    document.getElementById("imgCPU").src=`./img/${computerSelection}.png`
+    playRound(playerSelection, computerSelection);
+    resetImagen()
+    winnerChecker()
+}
+
+function clickScissors(){
+    const playerSelection = "scissors";
+    let computerSelection = getComputerChoice();
+    document.getElementById("imgCPU").src=`./img/${computerSelection}.png`
+    document.getElementById("imgPlayer").src=`./img/${playerSelection}.png`
+    playRound(playerSelection, computerSelection)
+    resetImagen()
+    winnerChecker()
+}
+
+winnerChecker = () =>{ 
+    if (player === 5 || cpu === 5){
+        return  player > cpu ? playerWin() : cpuWin()
+    }
+}
+
+function playerWin(){
+    endgameModal.classList.add('active')
+    overlay.classList.add('active') 
+    document.getElementById('overlay').innerHTML = '<p>GANASTE PAPA!!!</p>' 
+}
+
+function cpuWin(){
+    endgameModal.classList.add('active')
+    overlay.classList.add('active') 
+    document.getElementById('overlay').innerHTML = '<p>): CPU Gana!!</p>'
+}
+
+function resetGame (){
+    endgameModal.classList.remove('active')
+    overlay.classList.remove('active')
+    player = 0
+    cpu = 0
+    puntoCpu.textContent = player
+    puntoPlayer.textContent = cpu
+    msj.textContent = "" 
+}
+
+restartBtn.addEventListener('click', ()=>{
+    resetGame()
+})
 
 function getComputerChoice (){
     let numero = Math.floor(Math.random()*3);
@@ -30,62 +108,24 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == "rock" && computerSelection == "rock" ||
         playerSelection == "paper" && computerSelection == "paper" ||
         playerSelection == "scissors" && computerSelection == "scissors"){
-        console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => empate") 
-
+        msj.textContent = "Empate"   
     }
     else if (playerSelection == "paper" && computerSelection == "rock" ||
              playerSelection == "rock" && computerSelection == "scissors" ||
              playerSelection == "scissors" && computerSelection == "paper"){
-             console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => punto player")
-             return "player" 
+             msj.textContent = "Ganaste esta!!"
+             player ++
+             puntoPlayer.textContent = player 
     }
     else if (playerSelection == "paper" && computerSelection == "scissors" ||
              playerSelection == "rock" && computerSelection == "paper" ||
              playerSelection == "scissors" && computerSelection == "rock"){
-             console.log("player: "+ playerSelection + " | computadora: " + computerSelection +" => punto compudora") 
-             return "computer"
+             msj.textContent = "Perdiste esta" 
+             cpu ++
+             puntoCpu.textContent = cpu
     }
-    else{
-        console.log("escribir bien => rock, paper or scissors")
-    }   
 };
 
 
 
 
-
-// function game (){
-//     let player = 0;
-//     let computer = 0;
-
-//     for (let index = 0; index < 5; index++)  {
-
-//         let computerSelection = getComputerChoice ();
-        
-//         let playerSelection = prompt("rock, paper or scissors");
-
-//         let resultado =playRound(playerSelection, computerSelection)
-
-//         if ( resultado == "player"){
-//             player++
-//         }
-//         else if (resultado == "computer"){
-//             computer++
-//         }
-//         console.log("player:"+ player +" | " + "computer: " + computer )
-//     }
-
-//     if (player > computer){
-//         console.log("player gano!!")
-//     }
-//     else if (player < computer){
-//         console.log("computer gano!!")
-//     }
-//     else{
-//         console.log("empate")
-//     }
-
-
-// }
-
-// game()
